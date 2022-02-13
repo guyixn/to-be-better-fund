@@ -1,0 +1,33 @@
+spring:
+  application:
+    # 应用名称
+    name: to-store-fund
+  cloud:
+    nacos:
+      discovery:
+        # Nacos 服务发现与注册配置，其中子属性 server-addr 指定 Nacos 服务器主机和端口
+        server-addr: 192.168.0.203:8848
+        # 注册到 nacos 的指定 namespace，默认为 public
+        namespace: public
+        # Nacos认证信息
+        # password: nacos
+        # username: nacos
+        group: fund-store
+  datasource:
+    dynamic:
+      primary: house #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        house:
+          url: jdbc:mysql://localhost:3306/fund_house?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+          username: root
+          password: Hundsun!123
+          driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  # 服务器端口
+  port: 7004
+#mybatis-plus:
+#  configuration:
+#    log-impl: com.store_fund.log.CustomLogOutImpl
+  #开启sql日志
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

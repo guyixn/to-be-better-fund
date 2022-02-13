@@ -1,0 +1,43 @@
+spring:
+  application:
+    # 应用名称
+    name: to-collect-fund
+  cloud:
+    nacos:
+      discovery:
+        # Nacos 服务发现与注册配置，其中子属性 server-addr 指定 Nacos 服务器主机和端口
+        server-addr: 192.168.0.203:8848
+        # 注册到 nacos 的指定 namespace，默认为 public
+        namespace: public
+        # Nacos认证信息
+        # password: nacos
+        # username: nacos
+        group: fund-store
+# 全局配置下，所有请求的默认重试信息按此配置进行
+forest:
+  # 配置后端HTTP API为 okhttp3
+  backend: okhttp3
+  # 最大请求重试次数，默认为 0 次
+  max-retry-count: 3
+  # 为最大重试时间间隔, 单位为毫秒，默认为 0 毫秒
+  max-retry-interval: 10
+  ## 日志总开关，打开/关闭Forest请求/响应日志（默认为 true）
+  log-enabled: false
+  ## 打开/关闭Forest请求日志（默认为 true）
+  log-request: false
+  ## 打开/关闭Forest响应状态日志（默认为 true）
+  log-response-status: false
+  ## 打开/关闭Forest响应内容日志（默认为 false）
+  log-response-content: false
+  # 转换器配置，支持 json, xml, text, binary 四种数据类型的配置
+  converters:
+    # JSON转换器
+    json:
+      # JSON转换器设置为GSON转换器
+      type: com.collect_fund.convert.CustomForestJsonConverter
+      # 转换器的参数设置
+      parameters:
+        # JSON数据转换器的全局日期格式化配置
+        dateFormat: yyyy-MM-dd
+server:
+  port: 7001
