@@ -27,5 +27,5 @@ public interface FundHistoryForest {
             timeout = 10000,
             maxRetryInterval = 100
     )
-    EastmoneyHistoryResult getFundHistory(@Query("fundCode") String fundCode, @Query("pageIndex") String pageIndex, @Query("pageSize") String pageSize);
+    EastmoneyHistoryResult getFundHistory(@Query("fundCode") String fundCode, @Query("pageIndex") Integer pageIndex, @Query("pageSize") Integer pageSize);
 }

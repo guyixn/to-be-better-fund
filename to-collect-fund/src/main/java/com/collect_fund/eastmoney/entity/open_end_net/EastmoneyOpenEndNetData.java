@@ -3,7 +3,7 @@ package com.collect_fund.eastmoney.entity.open_end_net;
 import lombok.Data;
 
 @Data
-public class EastmoneyOpenEndNetListData {
+public class EastmoneyOpenEndNetData {
     //["167301","方正富邦保险主题指数","FZFBBXZTZS","0.8250","1.3790","0.8050","1.3460","0.02","2.48","开放申购","开放赎回","","1","0","1","","1","0.08%","0.08%","1","0.80%"]
     /**
      * 基金代码

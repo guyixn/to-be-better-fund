@@ -3,10 +3,10 @@ package com.collect_fund.eastmoney.forest;
 
 import com.dtflys.forest.annotation.Address;
 import com.dtflys.forest.annotation.Get;
-import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyListResult;
+import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyResult;
 
 /**
- * 获取eastmoney基金公司列表
+ * 基金公司列表
  */
 @Address(host = "fund.eastmoney.com")
 public interface FundCompanyForest {
@@ -19,5 +19,5 @@ public interface FundCompanyForest {
             url = "/Data/FundRankScale.aspx",
             dataType = "json"
     )
-    EastmoneyCompanyListResult getCompanyList();
+    EastmoneyCompanyResult getCompanyList();
 }

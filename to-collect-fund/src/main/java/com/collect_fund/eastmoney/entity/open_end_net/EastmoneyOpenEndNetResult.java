@@ -8,7 +8,7 @@ import java.util.List;
  * @author tbb
  */
 @Data
-public class EastmoneyOpenEndNetListResult {
+public class EastmoneyOpenEndNetResult {
     private List<String> chars;
     private List<List<String>> datas;
     private String[] count;

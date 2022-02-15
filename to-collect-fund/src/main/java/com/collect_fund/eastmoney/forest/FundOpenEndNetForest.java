@@ -3,7 +3,7 @@ package com.collect_fund.eastmoney.forest;
 import com.dtflys.forest.annotation.Address;
 import com.dtflys.forest.annotation.Get;
 import com.dtflys.forest.annotation.Query;
-import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetListResult;
+import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetResult;
 
 /**
  * @Author: tbb
@@ -34,5 +34,5 @@ public interface FundOpenEndNetForest {
                     "onlySale: 0",
             }
     )
-    EastmoneyOpenEndNetListResult getFundOpenEndNet(@Query(name = "page") String page);
+    EastmoneyOpenEndNetResult getFundOpenEndNet(@Query(name = "page") String page);
 }

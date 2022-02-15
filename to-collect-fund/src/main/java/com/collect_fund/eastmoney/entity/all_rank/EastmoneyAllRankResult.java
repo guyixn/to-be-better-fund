@@ -10,7 +10,7 @@ import java.util.List;
  * @Description: all rank result list
  */
 @Data
-public class EastmoneyAllRankListResult {
+public class EastmoneyAllRankResult {
     private List<String> data;
     private Integer allRecords = 0;
     private Integer pageIndex = 0;

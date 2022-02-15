@@ -1,6 +1,7 @@
 package com.collect_fund.eastmoney;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.collect_fund.ToCollectFundApplication;
 import com.collect_fund.eastmoney.entity.fund_history.EastmoneyHistoryResult;
 import com.collect_fund.eastmoney.forest.FundHistoryForest;
@@ -20,9 +21,9 @@ public class TestFundHistoryForest {
 
     @Test
     void getFundAllRank() {
-        EastmoneyHistoryResult eastmoneyFundHistory = fundHistoryForest.getFundHistory("161130", "1", "20");
+        EastmoneyHistoryResult eastmoneyFundHistory = fundHistoryForest.getFundHistory("000001", 2, 20);
         eastmoneyFundHistory.getData().getLSJZList().forEach(v -> {
-            System.out.println(JSON.toJSONString(v));
+            System.out.println(JSON.toJSONString(v, SerializerFeature.WriteMapNullValue));
         });
     }
 }

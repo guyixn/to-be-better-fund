@@ -2,7 +2,7 @@ package com.collect_fund.eastmoney;
 
 import com.alibaba.fastjson.JSON;
 import com.collect_fund.ToCollectFundApplication;
-import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyListResult;
+import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyResult;
 import com.collect_fund.eastmoney.forest.FundCompanyForest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ public class TestFundCompanyForest {
 
     @Test
     void getCompanyList(){
-        EastmoneyCompanyListResult eastmoneyCompanyListResult = companyClient.getCompanyList();
+        EastmoneyCompanyResult eastmoneyCompanyResult = companyClient.getCompanyList();
 //        System.out.println(JSON.toJSONString(eastmoneyCompanyListResult));
 
-        eastmoneyCompanyListResult.getData().forEach(v->{
+        eastmoneyCompanyResult.getData().forEach(v->{
             System.out.println(JSON.toJSONString(v));
         });
     }

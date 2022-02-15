@@ -1,7 +1,7 @@
 package com.collect_fund.eastmoney;
 
 import com.collect_fund.ToCollectFundApplication;
-import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetListResult;
+import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetResult;
 import com.collect_fund.eastmoney.forest.FundOpenEndNetForest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class TestFundOpenEndNetForest {
 
     @Test
     void getFundAllRank(){
-        EastmoneyOpenEndNetListResult openEndNetListResult = fundOpenEndNetForest.getFundOpenEndNet("1,200");
+        EastmoneyOpenEndNetResult openEndNetListResult = fundOpenEndNetForest.getFundOpenEndNet("1,200");
         openEndNetListResult.getDatas().forEach(v->{
             System.out.println(v);
         });

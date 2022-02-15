@@ -3,15 +3,17 @@ package com.collect_fund.convert;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
+import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankResult;
+import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyResult;
+import com.collect_fund.eastmoney.entity.fix_invest.EastmoneyFixedInvestResult;
+import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetResult;
 import com.dtflys.forest.converter.json.ForestJsonConverter;
 import com.dtflys.forest.utils.ForestDataType;
-import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankListResult;
-import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyListResult;
-import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetListResult;
 
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author lovex
@@ -58,12 +60,21 @@ public class CustomForestJsonConverter implements ForestJsonConverter {
      */
     @Override
     public <T> T convertToJavaObject(String source, Type targetType) {
-        if (EastmoneyCompanyListResult.class.getName().equals(targetType.getTypeName())) {
-            return JSON.parseObject("{\"data\""+source.substring(15).replace("'","\""), (Type) EastmoneyCompanyListResult.class);
-        }else if (EastmoneyAllRankListResult.class.getName().equals(targetType.getTypeName())){
-            return JSON.parseObject("{\"data\"" + StrUtil.removeSuffix(source.substring(21).replace("'", "\""), ";"), (Type) EastmoneyAllRankListResult.class);
-        }else if (EastmoneyOpenEndNetListResult.class.getName().equals(targetType.getTypeName())){
-            return JSON.parseObject(source.substring(7).replace("'","\""), (Type) EastmoneyOpenEndNetListResult.class);
+        //基金公司
+        if (EastmoneyCompanyResult.class.getName().equals(targetType.getTypeName())) {
+            return JSON.parseObject("{\"data\""+source.substring(15).replace("'","\""), (Type) EastmoneyCompanyResult.class);
+        }
+        //基金排行
+        else if (EastmoneyAllRankResult.class.getName().equals(targetType.getTypeName())){
+            return JSON.parseObject("{\"data\"" + StrUtil.removeSuffix(source.substring(21).replace("'", "\""), ";"), (Type) EastmoneyAllRankResult.class);
+        }
+        //开放式基金净值
+        else if (EastmoneyOpenEndNetResult.class.getName().equals(targetType.getTypeName())){
+            return JSON.parseObject(source.substring(7).replace("'","\""), (Type) EastmoneyOpenEndNetResult.class);
+        }
+        //基金定投
+        else if (EastmoneyFixedInvestResult.class.getName().equals(targetType.getTypeName())){
+            return JSON.parseObject(StrUtil.removeSuffix(StrUtil.subSuf(source, StrUtil.indexOf(source, '{', 0, 100)), ")"), (Type) EastmoneyFixedInvestResult.class);
         }
         return JSON.parseObject(source,targetType);
     }
@@ -84,7 +95,7 @@ public class CustomForestJsonConverter implements ForestJsonConverter {
      */
     @Override
     public <T> T convertToJavaObject(byte[] source, Class<T> targetType, Charset charset) {
-        return (T) new EastmoneyCompanyListResult();
+        return (T) new EastmoneyCompanyResult();
     }
 
     /**

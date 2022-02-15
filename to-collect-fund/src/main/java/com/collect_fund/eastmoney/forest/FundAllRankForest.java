@@ -1,7 +1,7 @@
 package com.collect_fund.eastmoney.forest;
 
 import com.dtflys.forest.annotation.*;
-import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankListResult;
+import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankResult;
 
 /**
  * 获取所有基金排行
@@ -36,5 +36,5 @@ public interface FundAllRankForest {
             retryCount = 10,
             maxRetryInterval = 1000
     )
-    EastmoneyAllRankListResult getFundAllRank(@Query(name = "sd") String startDate, @Query(name = "ed") String endDate, @Query(name = "pi", defaultValue = "1") Integer pageIndex, @Query(name = "pn", defaultValue = "50") Integer pageSize);
+    EastmoneyAllRankResult getFundAllRank(@Query(name = "sd") String startDate, @Query(name = "ed") String endDate, @Query(name = "pi", defaultValue = "1") Integer pageIndex, @Query(name = "pn", defaultValue = "50") Integer pageSize);
 }

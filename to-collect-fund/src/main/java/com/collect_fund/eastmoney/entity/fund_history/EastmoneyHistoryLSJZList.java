@@ -53,7 +53,7 @@ public class EastmoneyHistoryLSJZList {
      */
     private String DTYPE;
     /**
-     *
+     * 分红配送
      */
     private String FHSP;
 

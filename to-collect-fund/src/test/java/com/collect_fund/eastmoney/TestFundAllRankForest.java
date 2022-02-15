@@ -2,11 +2,10 @@ package com.collect_fund.eastmoney;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.Page;
 import com.alibaba.fastjson.JSON;
 import com.collect_fund.ToCollectFundApplication;
-import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankListData;
-import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankListResult;
+import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankData;
+import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankResult;
 import com.collect_fund.eastmoney.forest.FundAllRankForest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -41,10 +40,10 @@ public class TestFundAllRankForest {
 
     @Test
     void getFundAllRank() throws InterruptedException {
-        EastmoneyAllRankListResult allRankListResult = fundAllRankForest.getFundAllRank("2022-02-12", "2022-02-12", 1, 50);
+        EastmoneyAllRankResult allRankListResult = fundAllRankForest.getFundAllRank("2022-02-12", "2022-02-12", 1, 50);
         cd = new CountDownLatch(allRankListResult.getAllPages()-1);
-        List<EastmoneyAllRankListData> pojoResultList = allRankListResult.getData().stream().map(v -> {
-            EastmoneyAllRankListData allRankListData = new EastmoneyAllRankListData();
+        List<EastmoneyAllRankData> pojoResultList = allRankListResult.getData().stream().map(v -> {
+            EastmoneyAllRankData allRankListData = new EastmoneyAllRankData();
             String[] r = v.split(",");
             allRankListData.setFundCode(r[0]);
             allRankListData.setFundShortName(r[1]);
@@ -104,7 +103,7 @@ public class TestFundAllRankForest {
         @Override
         public void run() {
             try {
-                EastmoneyAllRankListResult allRankListResult = fundAllRankForest.getFundAllRank(startDate, endDate, pageIndex, pageSize);
+                EastmoneyAllRankResult allRankListResult = fundAllRankForest.getFundAllRank(startDate, endDate, pageIndex, pageSize);
                 allRankListResult.getData().forEach(v -> {
                     result.add(v);
                 });

@@ -8,6 +8,6 @@ import java.util.List;
  * @author tbb
  */
 @Data
-public class EastmoneyCompanyListResult {
+public class EastmoneyCompanyResult {
     private List<List<String>> data;
 }

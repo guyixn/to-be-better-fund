@@ -11,7 +11,7 @@ import java.util.Date;
  * @Description: all rank pojo
  */
 @Data
-public class EastmoneyAllRankListData {
+public class EastmoneyAllRankData {
     /**
      * index 0 基金代码
      */
