@@ -27,6 +27,7 @@
         <module>to-utils-fund</module>
         <module>to-collect-fund</module>
         <module>to-store-fund</module>
+        <module>to-test-kafka</module>
     </modules>
 
     <dependencyManagement>

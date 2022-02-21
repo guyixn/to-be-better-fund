@@ -98,6 +98,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <!--如果你追求极致的性能，或者不想让代码看起来更加的复杂，那么spring kafka是更好的选择-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
 
     </dependencies>
