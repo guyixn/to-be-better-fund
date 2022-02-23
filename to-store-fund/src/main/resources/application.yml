@@ -15,24 +15,26 @@ spring:
         group: fund-store
   datasource:
     dynamic:
-      primary: house #设置默认的数据源或者数据源组,默认值即为master
-      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      #设置默认的数据源或者数据源组,默认值即为master
+      primary: house
+      #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      strict: false
       datasource:
         house:
           url: jdbc:mysql://localhost:3306/fund_house?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
           username: root
-          password: Hundsun!123
+          password: zxcv1234!@#$
           driver-class-name: com.mysql.cj.jdbc.Driver
   kafka:
-    bootstrap-servers: 192.168.0.203:9092
-    producer:
-      value-serializer: com.alibaba.fastjson.serializer.JSONSerializableSerializer
-    consumer:
-      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    bootstrap-servers: 106.12.162.149:9092
 #    producer:
-#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      value-serializer: com.alibaba.fastjson.serializer.JSONSerializableSerializer
 #    consumer:
 #      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
 
 server:
   # 服务器端口

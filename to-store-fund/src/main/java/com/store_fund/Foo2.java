@@ -26,7 +26,7 @@ public class Foo2 {
 
     @Override
     public String toString() {
-        return "Foo2 [foo=" + this.foo + "]" +"something gg hh sssfasdfasdfsadfsdfafawqerqwegdfv";
+        return "Foo2 [foo=" + this.foo + "]" ;
     }
 
 }
