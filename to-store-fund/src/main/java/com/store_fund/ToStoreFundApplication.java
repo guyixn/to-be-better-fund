@@ -1,31 +1,34 @@
 package com.store_fund;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.util.CharsetUtil;
+import com.alibaba.fastjson.PropertyNamingStrategy;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.converter.JsonMessageConverter;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
 
 @SpringBootApplication
 @MapperScan("com.store_fund.eastmoney.mapper")
-@EnableDiscoveryClient
 @Slf4j
+@EnableDiscoveryClient
 public class ToStoreFundApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ToStoreFundApplication.class, args);
     }
 
+    /**
+     * http接口使用
+     * @return
+     */
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
         // TODO: 继承WebMvcConfigurerAdapter
@@ -33,23 +36,18 @@ public class ToStoreFundApplication {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         //2、添加fastJson 的配置信息，比如：是否要格式化返回的json数据;
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        //fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastJsonConfig.setCharset(CharsetUtil.CHARSET_UTF_8);
+        fastJsonConfig.setDateFormat(DatePattern.NORM_DATETIME_PATTERN);
+        fastJsonConfig.getParserConfig().propertyNamingStrategy = PropertyNamingStrategy.SnakeCase;
         //3、在convert中添加配置信息.
         fastConverter.setFastJsonConfig(fastJsonConfig);
-        HttpMessageConverter<?> converter = fastConverter;
-        return new HttpMessageConverters(converter);
+        return new HttpMessageConverters(fastConverter);
     }
 
-    @Bean
-    public NewTopic topic() {
-        return new NewTopic("topic1", 1, (short) 1);
-    }
-
-    @KafkaListener(id = "fooGroup", topics = "topic1")
-    public void listen(Foo2 foo) {
-        log.info("Received: " + foo);
-    }
-
+    /**
+     * kafka消息转换
+     * @return
+     */
     @Bean
     public RecordMessageConverter converter() {
         return new JsonMessageConverter();

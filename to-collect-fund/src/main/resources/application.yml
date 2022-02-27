@@ -13,6 +13,30 @@ spring:
         # password: nacos
         # username: nacos
         group: fund-store
+  kafka:
+    bootstrap-servers: 106.12.162.149:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      batch-size: 16384 # 每次批量发送消息的最大数量
+      buffer-memory: 33554432 # 每次批量发送消息的最大内存
+      properties:
+        linger:
+          ms: 10000 # 批处理延迟时间上限。这里配置为 10 * 1000 ms 过后，不管是否消息数量是否到达 batch-size
+  # 对应 RedisProperties 类
+  redis:
+    host: 124.222.82.182
+    port: 6379
+    # Redis 服务器密码，默认为空。生产中，一定要设置 Redis 密码！
+    password: jk
+    database: 0 # Redis 数据库号，默认为 0 。
+    timeout: 0 # Redis 连接超时时间，单位：毫秒。
+    # 对应 RedisProperties.Jedis 内部类
+    jedis:
+      pool:
+        max-active: 25 # 连接池最大连接数，默认为 8 。使用负数表示没有限制。
+        max-idle: 8 # 默认连接数最小空闲的连接数，默认为 8 。使用负数表示没有限制。
+        min-idle: 0 # 默认连接池最小空闲的连接数，默认为 0 。允许设置 0 和 正数。
+        max-wait: -1 # 连接池最大阻塞等待时间，单位：毫秒。默认为 -1 ，表示不限制。
 # 全局配置下，所有请求的默认重试信息按此配置进行
 forest:
   # 配置后端HTTP API为 okhttp3
@@ -24,11 +48,11 @@ forest:
   ## 日志总开关，打开/关闭Forest请求/响应日志（默认为 true）
   log-enabled: false
   ## 打开/关闭Forest请求日志（默认为 true）
-  log-request: false
+  log-request: true
   ## 打开/关闭Forest响应状态日志（默认为 true）
-  log-response-status: false
+  log-response-status: true
   ## 打开/关闭Forest响应内容日志（默认为 false）
-  log-response-content: false
+  log-response-content: true
   # 转换器配置，支持 json, xml, text, binary 四种数据类型的配置
   converters:
     # JSON转换器
@@ -41,3 +65,4 @@ forest:
         dateFormat: yyyy-MM-dd
 server:
   port: 7001
+

@@ -1,20 +1,35 @@
 package com.collect_fund.eastmoney.entity.fund_history;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+/**
+ * @author lovex
+ */
 @Data
-public class EastmoneyHistoryLSJZList {
+public class EastmoneyHistoryLSJZ {
+
+    public final static String TOPIC = "fund-history";
+
+    /**
+     * 基金代码
+     */
+    @JSONField(name = "fund_code")
+    private String fundCode;
     /**
      * 净值日期
      */
+    @JSONField(name = "fund_date")
     private String FSRQ;
     /**
      * 单位净值
      */
+    @JSONField(name = "unit_net")
     private String DWJZ;
     /**
      * 累计净值
      */
+    @JSONField(name = "sum_net")
     private String LJJZ;
     /**
      *
@@ -29,16 +44,19 @@ public class EastmoneyHistoryLSJZList {
      */
     private String NAVTYPE;
     /**
-     * 净值增长率
+     * 日增长率
      */
+    @JSONField(name = "day_grow_rate")
     private String JZZZL;
     /**
      * 申购状态
      */
+    @JSONField(name = "buy_status")
     private String SGZT;
     /**
      * 赎回状态
      */
+    @JSONField(name = "red_staus")
     private String SHZT;
     /**
      *
@@ -55,12 +73,8 @@ public class EastmoneyHistoryLSJZList {
     /**
      * 分红配送
      */
+    @JSONField(name = "Divide")
     private String FHSP;
 
-    private String FundType;
-    private String SYType;
-    private String isNewType;
-    private String Feature;
-    private String FundCode;
-    private String crawlDate;
+
 }

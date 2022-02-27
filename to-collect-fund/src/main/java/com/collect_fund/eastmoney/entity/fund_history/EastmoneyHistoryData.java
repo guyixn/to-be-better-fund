@@ -9,7 +9,7 @@ public class EastmoneyHistoryData {
     /**
      * 数据体
      */
-    private List<EastmoneyHistoryLSJZList> LSJZList;
+    private List<EastmoneyHistoryLSJZ> LSJZList;
     /**
      * 001 开放,场内
      * 005 货币类基金

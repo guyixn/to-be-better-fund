@@ -3,12 +3,16 @@ package com.collect_fund.convert;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.collect_fund.eastmoney.entity.all_rank.EastmoneyAllRankResult;
 import com.collect_fund.eastmoney.entity.company_list.EastmoneyCompanyResult;
 import com.collect_fund.eastmoney.entity.fix_invest.EastmoneyFixedInvestResult;
+import com.collect_fund.eastmoney.entity.fund_history.EastmoneyHistoryResult;
 import com.collect_fund.eastmoney.entity.open_end_net.EastmoneyOpenEndNetResult;
 import com.dtflys.forest.converter.json.ForestJsonConverter;
 import com.dtflys.forest.utils.ForestDataType;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
@@ -19,6 +23,8 @@ import java.util.Map;
  * @author lovex
  */
 public class CustomForestJsonConverter implements ForestJsonConverter {
+
+    private static final Gson gson = new Gson();
 
     /**
      * 将源对象转换为Map对象
@@ -75,6 +81,10 @@ public class CustomForestJsonConverter implements ForestJsonConverter {
         //基金定投
         else if (EastmoneyFixedInvestResult.class.getName().equals(targetType.getTypeName())){
             return JSON.parseObject(StrUtil.removeSuffix(StrUtil.subSuf(source, StrUtil.indexOf(source, '{', 0, 100)), ")"), (Type) EastmoneyFixedInvestResult.class);
+        }
+        //历史净值
+        else if (EastmoneyHistoryResult.class.getName().equals(targetType.getTypeName())){
+            return gson.fromJson(source, targetType);
         }
         return JSON.parseObject(source,targetType);
     }

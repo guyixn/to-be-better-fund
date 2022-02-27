@@ -52,7 +52,7 @@ public class ToFundRankController {
             String[] r = v.split(",", -1);
             allRankListData.setFundCode(r[0]);
             allRankListData.setFundShortName(r[1]);
-            allRankListData.setFundShortCode(r[2]);
+//            allRankListData.setFundShortCode(r[2]);
             allRankListData.setFundDate(StrUtil.isEmpty(r[3]) ? null : DateUtil.parseDate(r[3]));
             allRankListData.setUnitNet(toDouble(r[4]));
             allRankListData.setSumNet(toDouble(r[5]));
@@ -103,7 +103,7 @@ public class ToFundRankController {
                     String[] r = v.split(",", -1);
                     allRankListData.setFundCode(r[0]);
                     allRankListData.setFundShortName(r[1]);
-                    allRankListData.setFundShortCode(r[2]);
+//                    allRankListData.setFundShortCode(r[2]);
                     allRankListData.setFundDate(StrUtil.isEmpty(r[3]) ? null : DateUtil.parseDate(r[3]));
                     allRankListData.setUnitNet(toDouble(r[4]));
                     allRankListData.setSumNet(toDouble(r[5]));
@@ -140,7 +140,7 @@ public class ToFundRankController {
             String[] r = v.split(",", -1);
             allRankListData.setFundCode(r[0]);
             allRankListData.setFundShortName(r[1]);
-            allRankListData.setFundShortCode(r[2]);
+//            allRankListData.setFundShortCode(r[2]);
             allRankListData.setFundDate(StrUtil.isEmpty(r[3]) ? null : DateUtil.parseDate(r[3]));
             allRankListData.setUnitNet(toDouble(r[4]));
             allRankListData.setSumNet(toDouble(r[5]));

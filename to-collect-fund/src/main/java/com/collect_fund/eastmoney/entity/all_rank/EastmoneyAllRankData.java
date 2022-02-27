@@ -12,6 +12,7 @@ import java.util.Date;
  */
 @Data
 public class EastmoneyAllRankData {
+    public final static String TOPIC = "fund-all-rank";
     /**
      * index 0 基金代码
      */
@@ -102,4 +103,10 @@ public class EastmoneyAllRankData {
      */
     @JSONField(name = "buy_status")
     private String buyStatus;
+
+    /**
+     * 创建日期
+     */
+    @JSONField(name = "create_date")
+    private Date createDate;
 }

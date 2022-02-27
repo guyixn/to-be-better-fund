@@ -1,5 +1,6 @@
 package com.collect_fund.eastmoney.entity.fund_history;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -35,4 +36,6 @@ public class EastmoneyHistoryResult {
      * 页大小
      */
     private Integer PageSize;
+
+
 }

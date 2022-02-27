@@ -25,7 +25,6 @@ create table if not exists t_fund_rank
     id              int auto_increment comment 'id主键' primary key,
     fund_code       char(6)      not null comment '基金代码',
     fund_short_name varchar(100) null comment '基金简称',
-    fund_short_code varchar(50)  null comment '基金简码',
     fund_date       datetime     null comment '基金日期',
     unit_net        double       null comment '基金净值',
     sum_net         double       null comment '累计净值',
@@ -42,4 +41,248 @@ create table if not exists t_fund_rank
     buy_status      char         null comment '购买状态',
     create_date     datetime     null comment '创建日期'
 );
+
+use `fund_ds0`;
+create table if not exists t_fund_history_net0
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net1
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net2
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net3
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net4
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net5
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net6
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net7
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net8
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net9
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net10
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net11
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net12
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net13
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net14
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+create table if not exists t_fund_history_net15
+(
+    id              bigint auto_increment comment '主键id' primary key,
+    fund_code       char(6)      null comment '基金代码',
+    fund_short_name varchar(100) null comment '基金简称',
+    fund_date       date         null comment '基金日期',
+    unit_net        double       null comment '单位净值',
+    sum_net         double       null comment '累计净值',
+    day_grow_rate   double       null comment '日增长率',
+    buy_status      varchar(10)  null comment '购买状态',
+    red_status       varchar(10)  null comment '赎回状态',
+    divide          varchar(50)       null comment '分红配送',
+    create_date     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
+    );
+
+
 
