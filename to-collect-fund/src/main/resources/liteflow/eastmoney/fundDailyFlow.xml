@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+    <chain name="fundDailyChain">
+<!--        <then value="fundInitCmp"/>-->
+<!--        <then value="marketOverviewCmp"/>-->
+<!--        <then value="companyCmp"/>-->
+<!--        <then value="fundListCmp"/>-->
+<!--        <then value="fundOpenNetCmp"/>-->
+<!--        <then value="fundRankCmp"/>-->
+<!--        <then value="fundFixCmp"/>-->
+<!--        <then value="fundArchiveCmp"/>-->
+<!--        <then value="dailyResultCmp"/>-->
+    </chain>
+</flow>

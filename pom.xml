@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
-        <relativePath/>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.6.3</version>-->
+<!--        <relativePath/>-->
+<!--    </parent>-->
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,12 +34,20 @@
         <module>to-utils-fund</module>
         <module>to-collect-fund</module>
         <module>to-store-fund</module>
-        <module>to-test-kafka</module>
         <module>to-api-fund</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.6.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -52,7 +60,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.2.7.RELEASE</version>
+                <version>2021.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -67,7 +75,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.7.3</version>
+                <version>5.7.22</version>
             </dependency>
             <!--fastjson-->
             <dependency>
@@ -110,6 +118,11 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.22</version>
                 <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.16.8</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
