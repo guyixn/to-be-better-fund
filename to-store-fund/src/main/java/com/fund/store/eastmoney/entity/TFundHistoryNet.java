@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -44,7 +46,7 @@ public class TFundHistoryNet implements Serializable {
     /**
      * 基金日期
      */
-    @JSONField(name = "fund_date")
+    @JSONField(name = "fund_date", format = "yyyy-MM-dd")
     private Date fundDate;
 
     /**
@@ -86,6 +88,6 @@ public class TFundHistoryNet implements Serializable {
     /**
      * 创建日期
      */
-    @JSONField(name = "create_date")
-    private Date createDate;
+    @JSONField(name = "create_date_time", format = "yyyy-MM-dd HH:mm:ss")
+    private Date createDateTime;
 }

@@ -4,10 +4,13 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fund.api.converter.EastMoneyHistoryLSJZConverter;
 import com.fund.collect.ToCollectFundApplication;
+import com.fund.collect.eastmoney.entity.history.EastmoneyHistoryLSJZ;
 import com.fund.collect.eastmoney.entity.rank.EastMoneyRankData;
 import com.fund.collect.eastmoney.entity.rank.EastMoneyRankResult;
 import com.fund.collect.eastmoney.forest.FundRankForest;
+import com.fund.entity.result.Result;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,13 +19,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+
+import static cn.hutool.poi.excel.sax.ElementName.v;
 
 /**
  * @Author: tbb
@@ -34,9 +47,8 @@ import java.util.stream.Collectors;
 public class TestFundRankForest {
     @Autowired
     private FundRankForest fundAllRankForest;
-
     @Autowired
-    private KafkaTemplate<Object, Object> kafkaTemplate;
+    RestTemplate restTemplate;
 
     AtomicInteger result = new AtomicInteger(0);
 
@@ -49,7 +61,7 @@ public class TestFundRankForest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    private String initDate = DateUtil.today();
+    private String initDate = DateUtil.yesterday().toDateStr();
 
     private String fundCodeIndex = "fund-code";
 
@@ -81,23 +93,33 @@ public class TestFundRankForest {
             allRankListData.setCreateDate(new Date());
             return allRankListData;
         }).collect(Collectors.toList());
+        for(EastMoneyRankData v : pojoResultList){
+            if(Objects.isNull(v.getFundDate())){
+                continue;
+            }
+            EastMoneyHistoryLSJZConverter historyLSJZConverter = getHistoryLSJZConverter(v);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<EastMoneyHistoryLSJZConverter> request = new HttpEntity<>(historyLSJZConverter, headers);
+            restTemplate.postForEntity("http://to-store-fund/eastmoney/fund_history/save", request, Result.class);
+            log.info(JSON.toJSONString(pojoResultList));
+        }
+        // stringRedisTemplate.executePipelined(
+        //         new RedisCallback<String>() {
+        //             @Override
+        //             public String doInRedis(RedisConnection connection) {
+        //                 pojoResultList.forEach(v -> {
+        //                     connection.hashCommands().hSet(fundCodeIndex.getBytes(), v.getFundCode().getBytes(), JSON.toJSONString(v, SerializerFeature.WriteMapNullValue).getBytes());
+        //                 });
+        //                 return null;
+        //             }
+        //         }
+        // );
 
-        stringRedisTemplate.executePipelined(
-                new RedisCallback<String>() {
-                    @Override
-                    public String doInRedis(RedisConnection connection) {
-                        pojoResultList.forEach(v -> {
-                            connection.hashCommands().hSet(fundCodeIndex.getBytes(), v.getFundCode().getBytes(), JSON.toJSONString(v, SerializerFeature.WriteMapNullValue).getBytes());
-                        });
-                        return null;
-                    }
-                }
-        );
-
-//        pojoResultList.forEach(v -> {
-//            kafkaTemplate.send(EastmoneyAllRankData.TOPIC, v);
-//        });
-        result.addAndGet(allRankListResult.getData().size());
+       // pojoResultList.forEach(v -> {
+       //     kafkaTemplate.send(EastmoneyAllRankData.TOPIC, v);
+       // });
+        result.addAndGet(pojoResultList.size());
 
         for (int i = 2; i <= allRankListResult.getAllPages(); i++) {
             executorPool.execute(new FundAllRankThread(initDate, initDate, i, 50));
@@ -109,10 +131,6 @@ public class TestFundRankForest {
 
     public static Double toDouble(String value) {
         return StrUtil.isEmpty(value) ? 0.0d : Double.parseDouble(value.replace("%", ""));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(DateUtil.parseDate(null));
     }
 
     class FundAllRankThread extends Thread {
@@ -158,18 +176,29 @@ public class TestFundRankForest {
                     allRankListData.setCreateDate(new Date());
                     return allRankListData;
                 }).collect(Collectors.toList());
+                for(EastMoneyRankData v : pojoResultList){
+                    if(Objects.isNull(v.getFundDate())){
+                        continue;
+                    }
+                    EastMoneyHistoryLSJZConverter historyLSJZConverter = getHistoryLSJZConverter(v);
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_JSON);
+                    HttpEntity<EastMoneyHistoryLSJZConverter> request = new HttpEntity<>(historyLSJZConverter, headers);
+                    restTemplate.postForEntity("http://to-store-fund/eastmoney/fund_history/save", request, Result.class);
+                    log.info(JSON.toJSONString(pojoResultList));
+                }
 
-                stringRedisTemplate.executePipelined(
-                        new RedisCallback<String>() {
-                            @Override
-                            public String doInRedis(RedisConnection connection) {
-                                pojoResultList.forEach(v -> {
-                                    connection.hashCommands().hSet(fundCodeIndex.getBytes(), v.getFundCode().getBytes(), JSON.toJSONString(v, SerializerFeature.WriteMapNullValue).getBytes());
-                                });
-                                return null;
-                            }
-                        }
-                );
+                // stringRedisTemplate.executePipelined(
+                //         new RedisCallback<String>() {
+                //             @Override
+                //             public String doInRedis(RedisConnection connection) {
+                //                 pojoResultList.forEach(v -> {
+                //                     connection.hashCommands().hSet(fundCodeIndex.getBytes(), v.getFundCode().getBytes(), JSON.toJSONString(v, SerializerFeature.WriteMapNullValue).getBytes());
+                //                 });
+                //                 return null;
+                //             }
+                //         }
+                // );
 //
 //                pojoResultList.forEach(v -> {
 //                    kafkaTemplate.send("fund-all-rank", v);
@@ -182,5 +211,30 @@ public class TestFundRankForest {
             }
             cd.countDown();
         }
+    }
+
+    public EastMoneyHistoryLSJZConverter getHistoryLSJZConverter(EastMoneyRankData e) {
+        EastMoneyHistoryLSJZConverter c = new EastMoneyHistoryLSJZConverter();
+        c.setFundCode(e.getFundCode());
+        c.setFundShortName(e.getFundShortName());
+        c.setFundDate(dateToLocalDate(e.getFundDate()));
+        c.setUnitNet(String.valueOf(e.getUnitNet()));
+        c.setSumNet(String.valueOf(e.getSumNet()));
+        c.setDayGrowRate(String.valueOf(e.getDayGrowRate()));
+        c.setBuyStatus(e.getBuyStatus());
+        c.setRedStatus(e.getBuyStatus());
+        c.setDivide("");
+        c.setCreateDateTime(LocalDateTime.now());
+        return c;
+    }
+
+    /**
+     * 将 Date 转为 LocalDate
+     *
+     * @param date
+     * @return java.time.LocalDate;
+     */
+    public static LocalDate dateToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

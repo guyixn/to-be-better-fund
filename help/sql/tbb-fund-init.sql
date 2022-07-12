@@ -1,5 +1,10 @@
 -- tbb-fund初始化sql
 create schema if not exists fund_house collate utf8mb4_general_ci;
+create schema if not exists fund_ds0 collate utf8mb4_general_ci;
+create schema if not exists fund_ds1 collate utf8mb4_general_ci;
+create schema if not exists fund_ds2 collate utf8mb4_general_ci;
+create schema if not exists fund_ds3 collate utf8mb4_general_ci;
+create schema if not exists fund_ds4 collate utf8mb4_general_ci;
 
 -- 基金公司表
 create table if not exists fund_house.t_fund_company
@@ -58,7 +63,6 @@ create table t_fund_history_net0
     buy_status      varchar(10)  null comment '购买状态',
     red_status      varchar(10)  null comment '赎回状态',
     divide          varchar(50)  null comment '分红配送',
-    create_date     datetime     null comment '爬取日期',
-    constraint idx_fund_history_net
-        unique (fund_code, fund_date)
+    create_date_time     datetime     null comment '爬取日期',
+    constraint idx_fund_history_net unique (fund_code, fund_date)
 );

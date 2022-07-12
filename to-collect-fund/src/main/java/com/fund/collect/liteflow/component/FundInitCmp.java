@@ -18,7 +18,7 @@ public class FundInitCmp extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = this.getSlot();
+        DailySlot dailySlot = getContextBean(DailySlot.class);
         //设置开始时间
         dailySlot.setStartDate(DateUtil.date());
         //基金市场概况日期

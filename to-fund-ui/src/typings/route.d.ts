@@ -16,6 +16,7 @@ declare namespace AuthRoute {
     | 'dashboard'
     | 'dashboard_analysis'
     | 'dashboard_workbench'
+    | 'dashboard_overview'
     | 'document'
     | 'document_vue'
     | 'document_vue-new'

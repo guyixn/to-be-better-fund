@@ -17,7 +17,7 @@ public class FundRankCmp extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = getSlot();
+        DailySlot dailySlot = getContextBean(DailySlot.class);
         EastMoneyRankResult allRankListResult = fundAllRankForest.getFundAllRank(DateUtil.formatDate(dailySlot.getOpenNetDate()), DateUtil.formatDate(dailySlot.getOpenNetDate()), 1, 50);
         dailySlot.getStepLog().append(IConstant.DASH_WRAP).append("基金排行:" + allRankListResult.getData().size()).append(IConstant.RIGHT_SIGN).append("X");
     }

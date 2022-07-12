@@ -16,7 +16,7 @@ public class FundOpenNetCmp extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = getSlot();
+        DailySlot dailySlot = getContextBean(DailySlot.class);
         EastmoneyOpenNetResult openEndNetListResult = fundOpenEndNetForest.getFundOpenEndNet("1,200");
         dailySlot.getStepLog().append(IConstant.DASH_WRAP)
                 .append("开放式基金净值:" + openEndNetListResult.getDatas().size())

@@ -23,6 +23,17 @@ const dashboard: AuthRoute.Route = {
         permissions: ['super', 'admin'],
         icon: 'icon-park-outline:workbench'
       }
+    },
+    {
+      name: 'dashboard_overview',
+      path: '/dashboard/overview',
+      component: 'self',
+      meta: {
+        title: '总览',
+        requiresAuth: false,
+        permissions: ['super', 'admin'],
+        icon: 'icon-park-outline:workbench'
+      }
     }
   ],
   meta: {

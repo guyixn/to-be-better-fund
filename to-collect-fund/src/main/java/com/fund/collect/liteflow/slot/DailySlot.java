@@ -1,6 +1,5 @@
 package com.fund.collect.liteflow.slot;
 
-import com.yomahub.liteflow.entity.data.AbsSlot;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-public class DailySlot extends AbsSlot {
+public class DailySlot{
 
     /**
      * 开始日期
@@ -33,7 +32,7 @@ public class DailySlot extends AbsSlot {
     /**
      * 基金集合
      */
-    private Map<String, String> fundCollection = new HashMap<>(10000);
+    private Map<String, String> fundCollection = new HashMap<>(20000);
 
     /**
      * 是否可以访问

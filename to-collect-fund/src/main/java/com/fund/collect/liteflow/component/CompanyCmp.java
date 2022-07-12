@@ -27,7 +27,7 @@ public class CompanyCmp extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = this.getSlot();
+        DailySlot dailySlot = this.getContextBean(DailySlot.class);
         EastmoneyCompanyResult eastmoneyCompanyResult = companyClient.getCompanyList();
         List<EastmoneyCompanyData> es = eastmoneyCompanyResult.getData().stream().map(v -> {
             EastmoneyCompanyData e = new EastmoneyCompanyData();

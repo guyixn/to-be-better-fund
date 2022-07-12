@@ -8,5 +8,4 @@ import java.util.List;
 public class EastMoneyListResult {
 
     List<List<String>> data;
-
 }

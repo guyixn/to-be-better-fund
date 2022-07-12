@@ -40,7 +40,6 @@ export function createRequest(axiosConfig: AxiosRequestConfig, backendConfig?: S
       param.data,
       param.axiosConfig
     )) as Service.RequestResult<T>;
-
     return res;
   }
 
@@ -117,13 +116,17 @@ export function createHookRequest(axiosConfig: AxiosRequestConfig, backendConfig
     const { bool: network, setBool: setNetwork } = useBoolean(window.navigator.onLine);
 
     startLoading();
-    const data = ref<T | null>(null) as Ref<T | null>;
+    const code = ref<T | null>(null) as Ref<T | null>;
     const error = ref<Service.RequestError | null>(null);
+		const data = ref<T | null>(null) as Ref<T | null>;
+		const msg = ref<T | null>(null) as Ref<T | null>;
 
     function handleRequestResult(response: any) {
       const res = response as Service.RequestResult<T>;
       data.value = res.data;
       error.value = res.error;
+			code.value = res.code;
+			msg.value = res.msg;
       endLoading();
       setNetwork(window.navigator.onLine);
     }

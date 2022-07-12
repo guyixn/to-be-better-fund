@@ -30,8 +30,8 @@ export default class CustomAxiosInstance {
     backendConfig: Service.BackendResultConfig = {
       codeKey: 'code',
       dataKey: 'data',
-      msgKey: 'message',
-      successCode: 200
+      msgKey: 'msg',
+      successCode: "00000"
     }
   ) {
     this.backendConfig = backendConfig;
@@ -55,7 +55,7 @@ export default class CustomAxiosInstance {
       },
       (axiosError: AxiosError) => {
         const error = handleAxiosError(axiosError);
-        return handleServiceResult(error, null);
+        return handleServiceResult(error, null, null, null);
       }
     );
     this.instance.interceptors.response.use(
@@ -63,10 +63,10 @@ export default class CustomAxiosInstance {
         const { status } = response;
         if (status === 200 || status < 300 || status === 304) {
           const backend = response.data;
-          const { codeKey, dataKey, successCode } = this.backendConfig;
+          const { codeKey, dataKey, successCode, msgKey} = this.backendConfig;
           // 请求成功
           if (backend[codeKey] === successCode) {
-            return handleServiceResult(null, backend[dataKey]);
+						return handleServiceResult(null, backend[codeKey], backend[msgKey], backend[dataKey]);
           }
 
           // token失效, 刷新token
@@ -78,14 +78,14 @@ export default class CustomAxiosInstance {
           }
 
           const error = handleBackendError(backend, this.backendConfig);
-          return handleServiceResult(error, null);
+          return handleServiceResult(error, null, null, null);
         }
         const error = handleResponseError(response);
-        return handleServiceResult(error, null);
+        return handleServiceResult(error, null, null, null);
       },
       (axiosError: AxiosError) => {
         const error = handleAxiosError(axiosError);
-        return handleServiceResult(error, null);
+        return handleServiceResult(error, null, null, null);
       }
     );
   }

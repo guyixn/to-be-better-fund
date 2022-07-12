@@ -24,6 +24,16 @@ export const routeModel: Record<Auth.RoleType, AuthRoute.Route[]> = {
             requiresAuth: true,
             icon: 'icon-park-outline:workbench'
           }
+        },
+        {
+          name: 'dashboard_overview',
+          path: '/dashboard/overview',
+          component: 'self',
+          meta: {
+            title: '总览',
+            requiresAuth: false,
+            icon: 'icon-park-outline:workbench'
+          }
         }
       ],
       meta: {

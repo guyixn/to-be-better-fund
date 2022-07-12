@@ -1,12 +1,14 @@
 package com.fund.entity.dto;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fund.entity.base.BasePageQuery;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
-public class EastMoneyListData {
+public class EastMoneyListDataDto extends BasePageQuery {
     /**
      * 主题
      */
@@ -33,6 +35,12 @@ public class EastMoneyListData {
     /**
      * 发生日期
      */
-    @JSONField(name = "create_date", format = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createDate;
+    @JSONField(name = "create_date", format = "yyyy-MM-dd")
+    private LocalDate createDate;
+
+    /**
+     * 发生时间
+     */
+    @JSONField(name = "create_time", format = "HH:mm:ss")
+    private LocalTime createTime;
 }

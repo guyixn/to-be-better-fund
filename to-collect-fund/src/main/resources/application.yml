@@ -8,7 +8,7 @@ spring:
     nacos:
       discovery:
         # Nacos 服务发现与注册配置，其中子属性 server-addr 指定 Nacos 服务器主机和端口
-        server-addr: 192.168.0.203:8848
+        server-addr: 127.0.0.1:8848
         # 注册到 nacos 的指定 namespace，默认为 public
 #        namespace: public
 #        # Nacos认证信息
@@ -16,7 +16,7 @@ spring:
 #        # username: nacos
 #        group: fund-store
   kafka:
-    bootstrap-servers: 106.12.162.149:9092
+    bootstrap-servers: 106.12.162.149:9092,106.12.162.149:9093,106.12.162.149:9094
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       batch-size: 16384 # 每次批量发送消息的最大数量
@@ -34,8 +34,8 @@ spring:
           timeout: 3000
           retryAttempts: 3
           retryInterval: 1500
-          address: redis://192.168.0.203:6379
-          password: jk
+          address: redis://127.0.0.1:6379
+          password: 
           clientName: null
           keepAlive: false
           tcpNoDelay: false
@@ -71,4 +71,5 @@ forest:
         dateFormat: yyyy-MM-dd
 liteflow:
   ruleSource: liteflow/*/*.xml
+  enable: false
 

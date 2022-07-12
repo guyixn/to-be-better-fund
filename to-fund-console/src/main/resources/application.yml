@@ -1,1 +1,13 @@
-
+server:
+  port: 5002
+spring:
+  application:
+    # 应用名称
+    name: to-fund-console
+  cloud:
+    nacos:
+      discovery:
+        # Nacos 服务发现与注册配置，其中子属性 server-addr 指定 Nacos 服务器主机和端口
+        server-addr: 192.168.0.203:8848
+liteflow:
+  enable: false

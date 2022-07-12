@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { setupAssets } from './plugins';
+import setupPlugin, { setupAssets } from './plugins';
 import { setupStore } from './store';
 import { setupDirectives } from './directives';
 import { setupRouter } from './router';
@@ -16,6 +16,9 @@ async function setupApp() {
 
   // vue custom directives
   setupDirectives(app);
+
+	// vue plugin
+	setupPlugin(app);
 
   // vue router
   await setupRouter(app);

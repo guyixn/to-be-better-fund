@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class MarketOverviewCmp extends NodeComponent {
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = this.getSlot();
+        DailySlot dailySlot = getContextBean(DailySlot.class);
         Document marketOverviewDoc = Jsoup.connect("https://fund.eastmoney.com/company/default.html").get();
         Elements marketOverviewElement = marketOverviewDoc.body().select("div.outer_all > div.ttjj-grid-row > div.main-content.ttjj-grid-21 > div.third-block.jcommon-block > div.common-block-con > table > tbody");
         EastMoneyMarketOverviewData e = new EastMoneyMarketOverviewData();

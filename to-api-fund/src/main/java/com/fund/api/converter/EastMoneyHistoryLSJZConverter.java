@@ -3,6 +3,9 @@ package com.fund.api.converter;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * @author tbb
  */
@@ -23,8 +26,8 @@ public class EastMoneyHistoryLSJZConverter {
     /**
      * 基金日期
      */
-    @JSONField(name = "fund_date")
-    private String fundDate;
+    @JSONField(name = "fund_date", format = "yyyy-MM-dd")
+    private LocalDate fundDate;
 
     /**
      * 单位净值
@@ -65,6 +68,6 @@ public class EastMoneyHistoryLSJZConverter {
     /**
      * 创建日期
      */
-    @JSONField(name = "create_date")
-    private String createDate;
+    @JSONField(name = "create_date_time", format = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createDateTime;
 }

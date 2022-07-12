@@ -22,7 +22,7 @@ public class FundFixCmp  extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        DailySlot dailySlot = getSlot();
+        DailySlot dailySlot = getContextBean(DailySlot.class);
         EastmoneyFixedInvestResult result = fundFixedInvestForest.getFundFixedInvest(1,100);
         Document doc = Jsoup.parseBodyFragment(result.getData());
         Element body = doc.body();

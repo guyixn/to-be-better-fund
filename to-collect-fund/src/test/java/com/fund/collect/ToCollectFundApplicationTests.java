@@ -2,8 +2,7 @@ package com.fund.collect;
 
 import com.fund.collect.liteflow.slot.DailySlot;
 import com.yomahub.liteflow.core.FlowExecutor;
-import com.yomahub.liteflow.entity.data.LiteflowResponse;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
+import com.yomahub.liteflow.flow.LiteflowResponse;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.RedissonReactiveClient;
@@ -51,8 +50,8 @@ class ToCollectFundApplicationTests {
     void getAllFundHistorySync() throws InterruptedException {
         System.out.println(redissonClient.isShutdown());
         redissonClient.getConfig();
-        LiteflowResponse<DailySlot> response = flowExecutor.execute2Resp("fundDailyChain", "123", DailySlot.class);
-        System.out.println(response.getSlot().getStepLog());
+        LiteflowResponse response = flowExecutor.execute2Resp("fundDailyChain", "123", DailySlot.class);
+        System.out.println(response.getSlot().getChainName());
 
     }
 

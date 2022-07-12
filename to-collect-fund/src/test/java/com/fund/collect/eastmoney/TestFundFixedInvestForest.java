@@ -49,7 +49,6 @@ public class TestFundFixedInvestForest {
             sb.append(headline.select("td:nth-child(4)").text()).append(" - ");
             sb.append(headline.select("td:nth-child(6)").text()).append(" - ");
             sb.append(headline.select("td:nth-child(7)").text()).append(" - ");
-
             sb.append(headline.select("td:nth-child(8)").text()).append(" - ");
             sb.append(headline.select("td:nth-child(9)").text()).append(" - ");
             sb.append(headline.select("td:nth-child(10)").text()).append(" - ");

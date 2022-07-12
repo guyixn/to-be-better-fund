@@ -42,6 +42,8 @@ declare namespace Service {
     code: string | number;
     /** 错误信息 */
     msg: string;
+		data: [];
+		error: string | number;
   }
 
   /** 后端接口返回的数据结构配置 */
@@ -53,23 +55,26 @@ declare namespace Service {
     /** 表示后端消息的属性字段 */
     msgKey: string;
     /** 后端业务上定义的成功请求的状态 */
-    successCode: number | string;
+    successCode: string;
   }
 
   /** 自定义的请求成功结果 */
   interface SuccessResult<T = any> {
-    /** 请求错误 */
-    error: null;
+		error: null;
     /** 请求数据 */
     data: T;
+		code: T;
+		msg: T;
   }
 
   /** 自定义的请求失败结果 */
-  interface FailedResult {
+  interface FailedResult<T = any> {
     /** 请求错误 */
     error: RequestError;
     /** 请求数据 */
-    data: null;
+		data: T;
+		code: T;
+		msg: T;
   }
 
   /** 自定义的请求结果 */
@@ -82,7 +87,7 @@ declare namespace Service {
     /** 接口数据 */
     data: T;
     /** 接口消息 */
-    message: string;
+    msg: string;
   }
 
   /** mock的响应option */

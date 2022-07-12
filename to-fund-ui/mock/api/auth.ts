@@ -13,8 +13,8 @@ const apis: MockMethod[] = [
     method: 'post',
     response: (): Service.MockServiceResult<boolean> => {
       return {
-        code: 200,
-        message: 'ok',
+        code: "00000",
+        msg: 'ok',
         data: true
       };
     }
@@ -29,7 +29,7 @@ const apis: MockMethod[] = [
       if (!userName || !password) {
         return {
           code: ERROR_PARAM_CODE,
-          message: ERROR_PARAM_MSG,
+          msg: ERROR_PARAM_MSG,
           data: null
         };
       }
@@ -38,8 +38,8 @@ const apis: MockMethod[] = [
 
       if (findItem) {
         return {
-          code: 200,
-          message: 'ok',
+          code: "00000",
+          msg: 'ok',
           data: {
             token: findItem.token,
             refreshToken: findItem.refreshToken
@@ -48,7 +48,7 @@ const apis: MockMethod[] = [
       }
       return {
         code: 1000,
-        message: '用户名或密码错误！',
+        msg: '用户名或密码错误！',
         data: null
       };
     }
@@ -65,7 +65,7 @@ const apis: MockMethod[] = [
       if (!authorization) {
         return {
           code: REFRESH_TOKEN_CODE,
-          message: '用户已失效或不存在！',
+          msg: '用户已失效或不存在！',
           data: null
         };
       }
@@ -85,15 +85,15 @@ const apis: MockMethod[] = [
 
       if (isInUser) {
         return {
-          code: 200,
-          message: 'ok',
+          code: "00000",
+          msg: 'ok',
           data: userInfo
         };
       }
 
       return {
         code: REFRESH_TOKEN_CODE,
-        message: '用户信息异常！',
+        msg: '用户信息异常！',
         data: null
       };
     }
@@ -108,8 +108,8 @@ const apis: MockMethod[] = [
 
       if (findItem) {
         return {
-          code: 200,
-          message: 'ok',
+          code: "00000",
+          msg: 'ok',
           data: {
             token: findItem.token,
             refreshToken: findItem.refreshToken
@@ -118,7 +118,7 @@ const apis: MockMethod[] = [
       }
       return {
         code: 3000,
-        message: '用户已失效或不存在！',
+        msg: '用户已失效或不存在！',
         data: null
       };
     }

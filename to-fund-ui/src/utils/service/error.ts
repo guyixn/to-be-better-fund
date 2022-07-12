@@ -62,7 +62,7 @@ export function handleAxiosError(axiosError: AxiosError) {
  * @param response - 请求的响应
  */
 export function handleResponseError(response: AxiosResponse) {
-  const error: Service.RequestError = {
+  const error: { msg: string; code: string; type: string } = {
     type: 'axios',
     code: DEFAULT_REQUEST_ERROR_CODE,
     msg: DEFAULT_REQUEST_ERROR_MSG

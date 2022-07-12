@@ -1,3 +1,17 @@
+/* 加载动画 */
+.loading-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: #2c3e50 url(../img/bg-dark.png) 50%/cover no-repeat !important;
+}
+
 .view-on-github-container {
 	position: absolute;
 	line-height: 60px;
@@ -14,7 +28,9 @@
 	left: -5px;
 	margin-left: -20px;
 	height: 19px;
-	width: 19px
+	width: 19px;
+	display: inline !important;
+	vertical-align: baseline !important;
 }
 
 .on-github-underline {
@@ -32,9 +48,6 @@
 	transform: scaleX(0);
 }
 
-.github-additional-info{
-	text-decoration: none;
-}
 a#view-on-github:hover .on-github-underline {
 	-webkit-transform: scaleX(1);
 	transform: scaleX(1)
@@ -60,54 +73,207 @@ a#view-on-github:active {
 	text-decoration: none;
 }
 
-@media (max-width: 650px) {
-	.pagination {
-		display: none
-	}
+.loading-content {
+	position: absolute;
+	left: 18%;
+	width: 620px;
+	max-width: 100%;
+	margin: 20px auto;
+	margin-top: 20px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	line-height: 1.5 !important;
+}
 
-	.github-additional-info {
-		display: none
-	}
-
-	.view-on-github .icon-github {
-		margin-left: 0;
-		left: 0
-	}
-
-	.view-on-github .underline {
-		display: none
-	}
-
-	.sk-source-link {
-		margin-top: 7px
-	}
-
-	.view-on-github {
-		height: 44px;
-		line-height: 44px;
-		right: 12px;
-		top: 2px
+@media all and (max-width: 600px) {
+	.loading-content {
+		padding-right: 30px;
+		padding-left: 30px;
+		font-size: 32px
 	}
 }
 
-/* 加载动画 */
-.loading-container {
-	position: fixed;
-	left: 0;
-	top: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+@media all and (max-height: 720px) {
+	.loading-content {
+		margin-top: 15vh;
+		font-size: 32px
+	}
+}
+
+@media all and (max-height: 600px) {
+	.loading-content {
+		margin-top: 10vh
+	}
+}
+
+@media all and (max-height: 500px) {
+	.loading-content {
+		margin-top: 6vh
+	}
+}
+
+.loading-header {
+	width: 100%;
+	margin: 0 auto;
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 0.4em;
+	font-weight: bold;
+	position: relative;
+	transform: translateZ(0);
+	text-align: center;
+}
+
+.loading-header-line {
+	display: block;
+	height: 2px;
+	width: 100%;
+	z-index: -1;
+	background-color: #fff;
+	position: absolute;
+	top: 12px;
+	transform: scaleX(.3)
+}
+
+.loading-header-text {
+	padding: 0 10px;
+	z-index: 1;
+	position: relative;
+	background-color: #DC0000;
+	color: #ffffff;
+}
+
+.loading-header-line {
+	display: block;
+	height: 2px;
+	width: 100%;
+	z-index: -1;
+	background-color: #fff;
+	position: absolute;
+	top: 12px;
+	transform: scaleX(.3)
+}
+
+.loading-categories {
+	padding: 20px 0 30px;
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0 auto;
+	transform: translateZ(0);
+	opacity: 1;
+	transform: scale(1) translateY(0px);
+}
+
+.loading-category {
+	padding: 0;
+	position: relative;
+	display: block
+}
+
+.loading-sublinks {
+	font-size: 0.4em;
+	color: #ffffff;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-top: 2px solid #ffffff;
+	border-bottom: 2px solid #ffffff;
+	width: 100%;
+	text-align: center;
+	opacity: 1;
+	transform: scale(1) translateY(0px);
+}
+
+@media all and (max-height: 550px) {
+	.loading-sublinks {
+		padding-top: 20px;
+		padding-bottom: 20px
+	}
+}
+
+@media all and (max-height: 450px) {
+	.loading-sublinks {
+		padding-top: 10px;
+		padding-bottom: 10px
+	}
+}
+
+
+.loading-link {
+	display: inline-block;
+	color: #ffffff;
+	padding: 27px 20px 30px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	transition: color 0.25s ease-in-out;
+	transform: translateZ(0)
+}
+
+.loading-link:hover {
+	color: #2c3e50
+}
+
+.loading-link:hover::after {
+	transform: scaleY(1)
+}
+
+.loading-link::after {
+	content: "";
+	color: #2c3e50;
+	background-color: #fff;
 	width: 100%;
 	height: 100%;
-	background-color: #2c3e50;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: scaleY(0);
+	transform-origin: 0 100%;
+	transition: all 0.25s ease-in-out;
+	z-index: -1
+}
+
+@media all and (max-height: 720px) {
+	.loading-link {
+		padding-top: 20px;
+		padding-bottom: 20px
+	}
+}
+
+@media all and (max-height: 550px) {
+	.loading-link {
+		padding-top: 15px;
+		padding-bottom: 15px
+	}
+}
+
+@media all and (max-height: 450px) {
+	.loading-link {
+		padding-top: 10px;
+		padding-bottom: 10px
+	}
+}
+
+.loading-sublink {
+	color: inherit;
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px 0;
+	width: 32%;
+	vertical-align: middle
+}
+
+.loading-sublink:hover {
+	color: #2c3e50
+}
+
+.loading-sublink::after {
+	background-color: #ffffff
 }
 
 .loading-chase {
+	position: absolute;
+	right: 24%;
 	width: 60px;
 	height: 60px;
-	position: relative;
 	animation: loading-chase 2.5s infinite linear both;
 }
 
