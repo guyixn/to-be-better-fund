@@ -65,6 +65,10 @@
             <artifactId>jsoup</artifactId>
             <version>1.14.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+        </dependency>
         <!--如果你追求极致的性能，或者不想让代码看起来更加的复杂，那么spring kafka是更好的选择-->
         <dependency>
             <groupId>org.springframework.kafka</groupId>

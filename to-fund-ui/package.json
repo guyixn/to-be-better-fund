@@ -49,15 +49,14 @@
 		"pinia": "^2.0.14",
 		"print-js": "^1.6.0",
 		"qs": "^6.11.0",
+		"rollup": "^2.76.0",
 		"swiper": "^8.3.0",
 		"ua-parser-js": "^1.0.2",
 		"vditor": "^3.8.15",
 		"vite-plugin-style-import": "^2.0.0",
 		"vue": "3.2.37",
 		"vue-router": "^4.1.1",
-		"vxe-table": "^4.2.8",
 		"wangeditor": "^4.7.15",
-		"xe-utils": "^3.5.4",
 		"xgplayer": "^2.31.6"
 	},
 	"devDependencies": {

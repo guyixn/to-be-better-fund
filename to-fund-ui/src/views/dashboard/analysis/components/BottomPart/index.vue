@@ -18,16 +18,16 @@
 				</n-card>
 			</n-grid-item>
 		</n-grid>
-		<vxe-table border :data="tableDataVxe">
-			<vxe-column type="seq" width="60"></vxe-column>
-			<vxe-column field="name" title="Name">
-				<template #default="{ row }">
-					<span>自定义插槽模板 {{ row.name }}</span>
-				</template>
-			</vxe-column>
-			<vxe-column field="sex" title="Sex"></vxe-column>
-			<vxe-column field="age" title="Age"></vxe-column>
-		</vxe-table>
+<!--		<vxe-table border :data="tableDataVxe">-->
+<!--			<vxe-column type="seq" width="60"></vxe-column>-->
+<!--			<vxe-column field="name" title="Name">-->
+<!--				<template #default="{ row }">-->
+<!--					<span>自定义插槽模板 {{ row.name }}</span>-->
+<!--				</template>-->
+<!--			</vxe-column>-->
+<!--			<vxe-column field="sex" title="Sex"></vxe-column>-->
+<!--			<vxe-column field="age" title="Age"></vxe-column>-->
+<!--		</vxe-table>-->
 	</div>
 </template>
 
